@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runescript</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div id="main-container">
+        <!-- Left Panel -->
+        <div id="left-panel">
+            <div class="top-left-panel">
+                <!-- Menu Bar -->
+                <div class="menu-bar">
+                    <label for="file-upload" class="menu-button upload-button">Upload File (.docx)</label>
+                    <input type="file" id="file-upload" accept=".docx" style="display: none;" />
+                    <button class="menu-button" id="load-button">Load Runescript</button>
+                    <button class="menu-button" id="save-button">Save Runescript</button>
+                    <input type="file" id="json-load" accept=".json" style="display: none;" />
+                </div>
+
+                <!-- Tab System -->
+                <div class="tab-system">
+                    <div class="tab-header">
+                        <button class="tab-button active" data-tab="notes">✒️ Notes</button>
+                        <button class="tab-button" data-tab="narrative_arc">📈 Narrative Arc</button>
+                        <button class="tab-button" data-tab="world_setting">🌍 World Setting</button>
+                        <button class="tab-button" data-tab="characters">👥 Characters</button>
+                    </div>
+                    <div class="tab-content">
+                        <!-- Tab Panes -->
+                        <div class="tab-pane active" data-tab="notes"></div>
+                        <div class="tab-pane" data-tab="narrative_arc"></div>
+                        <div class="tab-pane" data-tab="world_setting"></div>
+                        <div class="tab-pane" data-tab="characters">
+                            <div class="dialogue-buttons">
+                                <button class="dialogue-button" data-type="description">Description</button>
+                                <button class="dialogue-button" data-type="dialogue">Dialogue</button>
+                                <button class="dialogue-button" data-type="relationships">Relationships</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-left-panel">
+                <!-- Parsed document text will appear here -->
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div id="right-panel">
+            <div id="top-right-panel">
+                <div class="content-display" id="tab-content-display">
+                    <!-- Tab content will be displayed here -->
+                </div>
+            </div>
+            <div id="bottom-right-panel">
+                <!-- Selected dialogue will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Alert Popup -->
+    <div id="custom-alert" class="custom-alert">
+        <span id="alert-message"></span>
+    </div>
+
+    <script src="js/mammoth.browser.min.js"></script>
+    <script src="js/runescript.js"></script>
+</body>
+</html>

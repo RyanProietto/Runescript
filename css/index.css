@@ -1,0 +1,296 @@
+/* Define Color Palette */
+:root {
+    --primary-100: #2A6F7F;  /* Deep teal for primary elements */
+    --primary-200: #4FA3B5;  /* Softer cyan-teal for accents/hover states */
+    --text-100: #F5F5F5;     /* Soft white for better readability */
+    --bg-100: #161618;       /* Rich dark base (cool-toned black) */
+    --bg-200: #212124;       /* Mid-tone surface for components */
+    --bg-300: #2C2C30;       /* Lightest surface for layered elements */
+
+    --success: #4FA3B5;      /* Success color: matches primary-200 (soft cyan-teal) */
+    --warning: #FFC107;      /* Warning color: golden yellow for contrast */
+    --error: #E57373;        /* Error color: soft red to match the cool theme */
+}
+
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: var(--bg-100);
+    color: var(--text-100);
+}
+
+#main-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 8px; /* Consistent gap between left and right panels */
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+/* Left and Right Panels */
+#left-panel, #right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Consistent gap between panels */
+    height: 100%;
+    overflow: hidden; /* Prevent overflow issues */
+}
+
+/* Unified Panel Styles */
+.top-left-panel,
+.bottom-left-panel,
+#top-right-panel,
+#bottom-right-panel {
+    flex: 1;
+    min-height: 0; /* Allow panels to shrink if needed */
+    padding: 8px;
+    background: var(--bg-200);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Add scrollbar if content overflows */
+}
+
+/* Menu Bar */
+.menu-bar {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+    background: var(--bg-100);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.menu-button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: var(--bg-100);
+    color: var(--text-100);
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.upload-button {
+    background: var(--primary-100);
+}
+
+.upload-button:hover {
+    background: var(--primary-200);
+}
+
+/* Tab System */
+.tab-system {
+    background: var(--bg-300);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.tab-header {
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    background: var(--bg-100);
+}
+
+.tab-button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: none;
+    color: var(--text-100);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.tab-button.active {
+    background: var(--primary-100);
+}
+
+.tab-content {
+    padding: 15px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Dialogue Buttons */
+.dialogue-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.dialogue-button {
+    padding: 10px;
+    border: none;
+    background: var(--bg-100);
+    color: var(--text-100);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dialogue-button.active {
+    background: var(--primary-100);
+}
+
+.dialogue-button:hover {
+    background: var(--primary-100);
+    transform: translateY(-1px);
+}
+
+/* Content Display */
+.content-display {
+    background: var(--bg-200);
+    padding: 15px;
+    border-radius: 5px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* Characters Container List */
+.characters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.character-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background-color: var(--bg-100);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.character-container.selected {
+    background-color: var(--primary-100);
+}
+
+.character-image {
+    width: 50px;
+    height: 50px;
+    background-color: var(--bg-300);
+    flex-shrink: 0;
+}
+
+.character-info {
+    flex-grow: 1;
+}
+
+.character-name {
+    user-select: none;
+    pointer-events: none; /* Makes the entire container clickable */
+}
+
+/* Dialogue Selection Display */
+#bottom-right-panel {
+    background: var(--bg-200);
+    border-radius: 8px;
+}
+
+/* Custom Alert */
+.custom-alert {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    background-color: var(--success);
+    color: #1E1E1E;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.custom-alert.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.custom-alert.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.custom-alert.success {
+    background-color: var(--success);
+}
+
+.custom-alert.error {
+    background-color: var(--error);
+}
+
+.custom-alert.warning {
+    background-color: var(--warning);
+}
+
+/* Character Details */
+.character-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.physical-traits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.trait {
+    background: var(--bg-300);
+    padding: 12px;
+    border-radius: 6px;
+}
+
+.trait label {
+    display: block;
+    color: var(--primary-200);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Notes Editor */
+.notes-editor {
+    width: 100%;
+    min-height: calc(100% - 65px);
+    background: var(--bg-200);
+    border: none;
+    color: var(--text-100);
+    padding: 5px;
+    resize: none;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+}
+.notes-editor:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-100);
+}

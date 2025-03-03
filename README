@@ -1,0 +1,65 @@
+# Build llama.cpp
+- git clone https://github.com/ggerganov/llama.cpp
+- ./build-llama.bash
+
+# Start llama.cpp: 
+- ./run.bat
+
+# Open browser and go to http://localhost:8000
+
++-------------------+       +-------------------+       +-------------------+       +-------------------+
+|                   |       |                   |       |                   |       |                   |
+|   Frontend        |       |   Python Backend  |       |   llama.cpp       |       |   User            |
+|   (index.html)    |       |   (Flask)         |       |   (llama-server)  |       |   (Browser)       |
+|                   |       |                   |       |                   |       |                   |
++--------+----------+       +--------+----------+       +--------+----------+       +--------+----------+
+         |                          |                          |                          |
+         | 1. Upload .docx file     |                          |                          |
+         +------------------------->|                          |                          |
+         |                          |                          |                          |
+         | 2. Extract text          |                          |                          |
+         | (using mammoth.js)       |                          |                          |
+         |                          |                          |                          |
+         | 3. Send text to Flask    |                          |                          |
+         +------------------------->|                          |                          |
+         |                          |                          |                          |
+         | 4. Send text to llama.cpp|                          |                          |
+         |                          +------------------------->|                          |
+         |                          |                          |                          |
+         | 5. Receive analysis      |                          |                          |
+         |                          |<-------------------------+                          |
+         |                          |                          |                          |
+         | 6. Return analysis       |                          |                          |
+         |<-------------------------+                          |                          |
+         |                          |                          |                          |
+         | 7. Display analysis      |                          |                          |
+         | in frontend              |                          |                          |
+         +------------------------->|                          |                          |
+         |                          |                          |                          |
++--------+----------+       +--------+----------+       +--------+----------+       +--------+----------+
+|                   |       |                   |       |                   |       |                   |
+|   Frontend        |       |   Python Backend  |       |   llama.cpp       |       |   User            |
+|   (index.html)    |       |   (Flask)         |       |   (llama-server)  |       |   (Browser)       |
+|                   |       |                   |       |                   |       |                   |
++-------------------+       +-------------------+       +-------------------+       +-------------------+
+
+
+
+1. Frontend (index.html)
+- Hosted by the Python HTTP server (python -m http.server 8000).
+- Contains the UI for uploading .docx files and displaying analysis results.
+- Uses mammoth.js to extract text from .docx files.
+
+2. Python Backend (Flask)
+- Runs on port 5000 (or another available port).
+- Receives the extracted text from the frontend.
+- Sends the text to llama.cpp for analysis.
+- Returns the analysis results to the frontend.
+
+3. llama.cpp (llama-server)
+- Runs on port 8080.
+- Receives text from the Python backend.
+- Processes the text and returns analysis results.
+
+4. User (Browser)
+- Interacts with the frontend to upload files and view results.
